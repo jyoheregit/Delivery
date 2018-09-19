@@ -1,0 +1,14 @@
+platform :ios, '10.0'
+
+target 'Delivery' do
+    use_frameworks!
+
+# Pods for Delivery
+	pod 'Alamofire', '~> 4.7'
+	pod 'SDWebImage', '~> 4.0'	
+
+  target 'DeliveryTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
