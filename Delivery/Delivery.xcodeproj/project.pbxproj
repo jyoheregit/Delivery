@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B18234E4214CB8620056A72F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18234E3214CB8620056A72F /* AppDelegate.swift */; };
 		B18234F9214CB8630056A72F /* DeliveryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18234F8214CB8630056A72F /* DeliveryTests.swift */; };
-		B1823514214CB9040056A72F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1823506214CB9040056A72F /* Info.plist */; };
 		B1823515214CB9040056A72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1823508214CB9040056A72F /* Assets.xcassets */; };
 		B1823516214CB9040056A72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B182350A214CB9040056A72F /* LaunchScreen.storyboard */; };
 		B1823517214CB9040056A72F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B182350C214CB9040056A72F /* Main.storyboard */; };
@@ -367,7 +366,6 @@
 			files = (
 				B1823516214CB9040056A72F /* LaunchScreen.storyboard in Resources */,
 				B1823515214CB9040056A72F /* Assets.xcassets in Resources */,
-				B1823514214CB9040056A72F /* Info.plist in Resources */,
 				B1823517214CB9040056A72F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -634,7 +632,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.learning.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -655,7 +653,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.learning.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

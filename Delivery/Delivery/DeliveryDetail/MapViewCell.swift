@@ -16,8 +16,8 @@ class MapViewCell : UICollectionViewCell {
             if let location = self.delivery?.location {
                 let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
                 let regionRadius: CLLocationDistance = 2000
-                let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate,
-                                                                      regionRadius, regionRadius)
+                let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate,
+                                                          latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
                 self.mapView.setRegion(coordinateRegion, animated: true)
                 
                 let annotation = MKPointAnnotation()

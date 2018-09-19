@@ -21,7 +21,7 @@ class BaseViewController: UIViewController {
     
     lazy var activityIndicatorView : UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicatorView.style = UIActivityIndicatorView.Style.gray
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.center = self.view.center
         return activityIndicatorView
@@ -29,7 +29,7 @@ class BaseViewController: UIViewController {
     
     lazy var refreshControl : UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action:#selector(refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action:#selector(refresh), for: UIControl.Event.valueChanged)
         return refreshControl
     }()
     
@@ -77,7 +77,7 @@ class BaseViewController: UIViewController {
     func showActivityIndicator() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         self.view.addSubview(loadingView)
-        self.view.bringSubview(toFront: loadingView)
+        self.view.bringSubviewToFront(loadingView)
         activityIndicatorView.startAnimating()
     }
     

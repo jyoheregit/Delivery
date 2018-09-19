@@ -6,8 +6,7 @@
 //  Copyright © 2018 Jyothish. All rights reserved.
 //
 
-import Foundation
-
+import UIKit
 import Foundation
 import CoreData
 
@@ -70,10 +69,10 @@ class CoreDataManager {
     private func setupNotifications() {
         let notificationCenter = NotificationCenter.default
         
-        notificationCenter.addObserver(forName: Notification.Name.UIApplicationWillTerminate, object: nil, queue: OperationQueue.main) { _ in
+        notificationCenter.addObserver(forName: UIApplication.willTerminateNotification, object: nil, queue: OperationQueue.main) { _ in
             self.saveContext()
         }
-        notificationCenter.addObserver(forName: Notification.Name.UIApplicationDidEnterBackground, object: nil, queue: OperationQueue.main) { _ in
+        notificationCenter.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: OperationQueue.main) { _ in
             self.saveContext()
         }
     }

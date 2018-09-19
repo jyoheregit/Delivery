@@ -59,7 +59,6 @@ extension BaseCollectionViewController : UICollectionViewDataSource {
         
         guard let dataSource = collectionViewDataSource else { return 0 }
         let numberOfItems = dataSource.numberOfItemsInSection()
-        print(numberOfItems)
         return numberOfItems
     }
     

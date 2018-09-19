@@ -25,7 +25,7 @@ class DeliveryCell : UICollectionViewCell {
     
     lazy var imageView : UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
