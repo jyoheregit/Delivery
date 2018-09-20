@@ -30,41 +30,39 @@ class DeliveryCell : UICollectionViewCell {
         return imageView
     }()
     
-    lazy var stackView : UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.addArrangedSubview(descriptionLabel)
-        return stackView
-    }()
-    
     lazy var descriptionLabel : UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.font = UIFont(name: "HelveticaNeue", size:16)
         return descriptionLabel
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //self.backgroundColor = UIColor.blue
-        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderColor = UIColor.lightGray.cgColor
         self.layer.borderWidth = 1.0
+        addImageView()
+        addDescriptionLabel()
+    }
+    
+    func addImageView() {
         self.contentView.addSubview(imageView)
-        //let edges = Constants.StandardSpacing.edges
-        let between = Constants.StandardSpacing.between
-        
-        imageView.anchor(top: (anchor: self.topAnchor, constant: 0.0), leading: (anchor: self.leadingAnchor, constant: 0.0),
+        imageView.anchor(top: (anchor: self.topAnchor, constant: 0.0),
+                         leading: (anchor: self.leadingAnchor, constant: 0.0),
                          bottom: nil, trailing: nil)
-        imageView.widthAnchor.activateConstraint(equalToConstant: 181)
-        imageView.heightAnchor.activateConstraint(equalToConstant: 100)
-        
-        self.contentView.addSubview(stackView)
-        stackView.anchor(top: (anchor: imageView.topAnchor, constant: 0.0),
-                         leading: (anchor: self.imageView.trailingAnchor, constant: between),
-                         bottom: (self.bottomAnchor, constant: 0.0),
-                        trailing: (anchor: self.trailingAnchor, constant: between))
+        imageView.widthAnchor.activateConstraint(equalToConstant: Constants.ImageView.width)
+        imageView.heightAnchor.activateConstraint(equalToConstant: Constants.ImageView.height)
+
+    }
+    
+    func addDescriptionLabel(){
+        let between = Constants.StandardSpacing.between
+        self.contentView.addSubview(descriptionLabel)
+        descriptionLabel.anchor(top: (anchor: imageView.topAnchor, constant: 2.0),
+                                leading: (anchor: self.imageView.trailingAnchor, constant: between),
+                                bottom: nil,
+                                trailing: (anchor: self.trailingAnchor, constant: between))
         
     }
 

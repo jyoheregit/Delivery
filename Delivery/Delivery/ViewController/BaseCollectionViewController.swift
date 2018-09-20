@@ -76,7 +76,8 @@ extension BaseCollectionViewController : UICollectionViewDataSource {
 extension BaseCollectionViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       collectionViewDelegate?.didSelectItemAtIndexPath(indexPath: indexPath)
+        guard let collectionViewDelegate = self.collectionViewDelegate else { return }
+        collectionViewDelegate.didSelectItemAtIndexPath(indexPath: indexPath)
     }
 }
 
@@ -85,7 +86,8 @@ extension BaseCollectionViewController : UICollectionViewDelegate {
 extension BaseCollectionViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         guard let delegate = collectionViewDelegate else { return CGSize.zero }
         return delegate.sizeForItemAtIndexPath(indexPath: indexPath)

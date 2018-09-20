@@ -43,7 +43,7 @@ class MapViewCell : UICollectionViewCell {
                        leading: (anchor: self.leadingAnchor, constant: 0.0),
                        bottom: nil,
                        trailing: (anchor: self.trailingAnchor, constant: 0.0))
-        mapView.heightAnchor.activateConstraint(equalToConstant: 300)
+        mapView.heightAnchor.activateConstraint(equalToConstant: CellType.mapViewCell.height())
     }
     
     required init?(coder aDecoder: NSCoder) {

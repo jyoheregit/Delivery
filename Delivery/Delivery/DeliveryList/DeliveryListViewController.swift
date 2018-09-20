@@ -12,7 +12,6 @@ import CoreData
 
 class DeliveryListViewController : BaseCollectionViewController {
     
-    private var deliveries : [DeliveryModel]?
     var networkManager : NetworkManager?
     var coordinator : DeliveryListCoordinator?
 
@@ -27,14 +26,10 @@ class DeliveryListViewController : BaseCollectionViewController {
         fetchDeliveries()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     //MARK: Custom Overrides
     
     override func registerCell() {
-        collectionView.register(DeliveryCell.self, forCellWithReuseIdentifier: "DeliveryCell")
+        collectionView.register(cell: DeliveryCell.self)
     }
     
     override func setupUI() {
@@ -42,13 +37,19 @@ class DeliveryListViewController : BaseCollectionViewController {
         super.setupUI()
     }
     
+    override func title() -> String? {
+        return Constants.Title.deliveryList
+    }
+    
     override func setupDataSource() {
-        let dataSource = DeliveryListDataSource(collectionView: collectionView, fetchedResultsController: fetchedResultsController)
+        let dataSource = DeliveryListDataSource(collectionView: collectionView,
+                                                fetchedResultsController: fetchedResultsController)
         self.collectionViewDataSource = dataSource
     }
     
     override func setupDelegate() {
-        let delegate = DeliveryListDelegate(collectionView: collectionView, fetchedResultsController: fetchedResultsController,
+        let delegate = DeliveryListDelegate(collectionView: collectionView,
+                                            fetchedResultsController: fetchedResultsController,
                                             coordinator: coordinator)
         self.collectionViewDelegate = delegate
         collectionView.delegate = self
@@ -58,25 +59,40 @@ class DeliveryListViewController : BaseCollectionViewController {
         super.refresh()
         fetchDeliveries()
     }
-    
-    //MARK: Fetch Deliveries
+}
+
+//MARK: Fetch Logic
+
+extension DeliveryListViewController {
     
     func fetchDeliveries() {
         
         showActivityIndicator()
+        fetchFromDB()
+        fetchFromNetwork()
+    }
+    
+    func fetchFromDB() {
+        
         do {
             try fetchedResultsController.performFetch()
         } catch let error  {
             print("Error: \(error)")
         }
+    }
+    
+    func fetchFromNetwork(){
         
-        networkManager?.fetchDeliveries() { (deliveries, error) in
+        guard let networkManager = self.networkManager else { return }
         
+        networkManager.fetchDeliveries() { (deliveries, error) in
+            
             guard let deliveries = deliveries  else {
                 self.cleanup()
                 if (self.fetchedResultsController.fetchedObjects?.count == 0){
                     if let error = error {
-                        self.collectionView.backgroundView = self.emptyMessageViewWith(message: error.localizedDescription)
+                        let messageView = self.emptyMessageViewWith(message: error.localizedDescription)
+                        self.collectionView.backgroundView = messageView
                     }
                 }
                 return
@@ -93,6 +109,3 @@ class DeliveryListViewController : BaseCollectionViewController {
         self.endRefreshing()
     }
 }
-
-
-

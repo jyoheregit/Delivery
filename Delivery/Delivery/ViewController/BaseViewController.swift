@@ -52,6 +52,7 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = title()
         setupUI()
     }
     
@@ -61,6 +62,7 @@ class BaseViewController: UIViewController {
     }
     
     func setupUI() {}
+    func title() -> String? { return nil }
     
     func anchorConnectionLabel(){
         self.view.addSubview(connectionLabel)

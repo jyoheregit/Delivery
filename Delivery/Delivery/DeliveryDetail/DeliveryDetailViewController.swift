@@ -17,13 +17,20 @@ class DeliveryDetailViewController: BaseCollectionViewController {
         super.viewDidLoad()
     }
     
+    //MARK: Custom Overrides
+
     override func setupUI(){
         super.setupUI()
+        collectionView.contentInset = UIEdgeInsets.zero
+    }
+    
+    override func title() -> String? {
+        return Constants.Title.deliveryDetail
     }
     
     override func registerCell() {
-        collectionView.register(MapViewCell.self, forCellWithReuseIdentifier: "MapViewCell")
-        collectionView.register(DeliveryCell.self, forCellWithReuseIdentifier: "DeliveryCell")
+        collectionView.register(cell: MapViewCell.self)
+        collectionView.register(cell: DeliveryCell.self)
     }
     
     override func setupDataSource() {

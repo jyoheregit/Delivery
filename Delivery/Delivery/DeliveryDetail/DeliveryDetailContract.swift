@@ -28,21 +28,19 @@ class DeliveryDetailDataSource : CollectionViewDataSource {
     
     func cellForItemAtIndexPath(indexPath: IndexPath) -> UICollectionViewCell {
         
+        guard let collectionView = self.collectionView else { fatalError("Collection view is nil") }
+
         let cellType = cellTypes[indexPath.row]
-        
+    
         switch cellType {
             
             case .mapViewCell:
-                guard let cell = collectionView?.dequeueReusableCell(withReuseIdentifier: "MapViewCell", for: indexPath) as? MapViewCell else{
-                    fatalError("Invalid IndexPath")
-                }
+                let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MapViewCell
                 cell.delivery = delivery
                 return cell
             
             case .deliveryCell:
-                guard let cell = collectionView?.dequeueReusableCell(withReuseIdentifier: "DeliveryCell", for: indexPath) as? DeliveryCell else {
-                    fatalError("Invalid IndexPath")
-                }
+                let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DeliveryCell
                 cell.delivery = delivery
                 return cell
         }
@@ -70,9 +68,10 @@ class DeliveryDetailDelegate : CollectionViewDelegate {
         
         switch cellType {
             case .mapViewCell:
-                return CGSize(width: collectionView.frame.size.width, height: 300)
+                return CGSize(width: collectionView.frame.size.width, height: cellType.height())
             case .deliveryCell:
-                return CGSize(width: collectionView.frame.size.width-32, height: 100)
+                return CGSize(width: collectionView.frame.size.width - (Constants.StandardSpacing.edges * 2),
+                              height: cellType.height())
         }
     }
 }

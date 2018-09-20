@@ -29,9 +29,8 @@ class DeliveryListDataSource : CollectionViewDataSource {
     
     func cellForItemAtIndexPath(indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView?.dequeueReusableCell(withReuseIdentifier: "DeliveryCell", for: indexPath) as? DeliveryCell else {
-            fatalError("Invalid IndexPath")
-        }
+        guard let collectionView = self.collectionView else { fatalError("Collection view is nil") }
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DeliveryCell
         let delivery = fetchedResultsController.object(at: indexPath)
         cell.delivery = delivery
         return cell
@@ -43,12 +42,14 @@ class DeliveryListDelegate : CollectionViewDelegate {
     weak var collectionView: UICollectionView?
     var fetchedResultsController : NSFetchedResultsController<Delivery>
     weak var coordinator : DeliveryListCoordinator?
+    var cellType : CellType
     
     init(collectionView : UICollectionView, fetchedResultsController : NSFetchedResultsController<Delivery>,
-         coordinator : DeliveryListCoordinator?) {
+         coordinator : DeliveryListCoordinator?, cellType : CellType = .deliveryCell) {
         self.collectionView = collectionView
         self.fetchedResultsController = fetchedResultsController
         self.coordinator = coordinator
+        self.cellType = cellType
     }
     
     func didSelectItemAtIndexPath(indexPath: IndexPath) {
@@ -60,7 +61,8 @@ class DeliveryListDelegate : CollectionViewDelegate {
     
     func sizeForItemAtIndexPath(indexPath: IndexPath) -> CGSize {
         guard let collectionView = collectionView else { return CGSize.zero }
-        return CGSize(width: collectionView.frame.size.width-32, height: 100)
+        return CGSize(width: collectionView.frame.size.width - (Constants.StandardSpacing.edges * 2),
+                      height: cellType.height())
     }
 }
 
