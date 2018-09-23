@@ -24,8 +24,7 @@ extension UIView {
     func anchor(top : (anchor: NSLayoutYAxisAnchor, constant: CGFloat)?,
                 leading : (anchor: NSLayoutXAxisAnchor, constant: CGFloat)?,
                 bottom : (anchor: NSLayoutYAxisAnchor, constant: CGFloat)?,
-                trailing : (anchor: NSLayoutXAxisAnchor, constant: CGFloat)?,
-                width : CGFloat = 0.0, height : CGFloat = 0.0) {
+                trailing : (anchor: NSLayoutXAxisAnchor, constant: CGFloat)?) {
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -65,10 +64,3 @@ extension NSLayoutDimension {
     }
 }
 
-extension NSLayoutConstraint {
-    
-    static func standardSpacing() -> CGFloat {
-        
-        return 16.0
-    }
-}

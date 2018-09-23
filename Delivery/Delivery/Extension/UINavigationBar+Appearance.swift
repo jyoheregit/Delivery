@@ -17,5 +17,4 @@ extension UINavigationBar {
         navigationBarAppearace.barTintColor = UIColor.uicolorFromHex(rgbValue: 0x29a5ee)
         navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
-    
 }

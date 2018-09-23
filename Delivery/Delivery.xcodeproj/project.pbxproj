@@ -173,8 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				B1D54A7D215699E900EE72B2 /* Data */,
-				B18234FA214CB8630056A72F /* Info.plist */,
 				B1D54A7B2156999700EE72B2 /* NetworkManagerTest.swift */,
+				B18234FA214CB8630056A72F /* Info.plist */,
 				B1D54A7A2156999600EE72B2 /* DeliveryTests-Bridging-Header.h */,
 			);
 			path = DeliveryTests;
