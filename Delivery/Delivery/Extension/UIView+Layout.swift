@@ -44,9 +44,6 @@ extension UIView {
         if let trailing = trailing {
             self.trailingAnchor.activateConstraint(anchor: trailing.anchor, constant: -trailing.constant)
         }
-        
-       //self.widthAnchor.activateConstraint(equalToConstant: width)
-       //self.heightAnchor.activateConstraint(equalToConstant: height)
     }
 }
 

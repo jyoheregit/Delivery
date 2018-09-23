@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B18234E4214CB8620056A72F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18234E3214CB8620056A72F /* AppDelegate.swift */; };
-		B18234F9214CB8630056A72F /* DeliveryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18234F8214CB8630056A72F /* DeliveryTests.swift */; };
 		B1823515214CB9040056A72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1823508214CB9040056A72F /* Assets.xcassets */; };
 		B1823516214CB9040056A72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B182350A214CB9040056A72F /* LaunchScreen.storyboard */; };
 		B1823517214CB9040056A72F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B182350C214CB9040056A72F /* Main.storyboard */; };
@@ -19,6 +18,13 @@
 		B1823524214D14E80056A72F /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1823523214D14E80056A72F /* DeliveryCell.swift */; };
 		B1823526214D1EAE0056A72F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1823525214D1EAE0056A72F /* Constants.swift */; };
 		B1D54A762152923900EE72B2 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D54A752152923900EE72B2 /* Reusable.swift */; };
+		B1D54A7C2156999700EE72B2 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D54A7B2156999700EE72B2 /* NetworkManagerTest.swift */; };
+		B1D54A7F21569A1D00EE72B2 /* deliverySuccess.json in Resources */ = {isa = PBXBuildFile; fileRef = B1D54A7E21569A1D00EE72B2 /* deliverySuccess.json */; };
+		B1D54A8021569CB400EE72B2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3633214D7BAA003068CD /* NetworkManager.swift */; };
+		B1D54A8121569D8700EE72B2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B182351D214CC1430056A72F /* Model.swift */; };
+		B1D54A8321573ADD00EE72B2 /* parsingError.json in Resources */ = {isa = PBXBuildFile; fileRef = B1D54A8221573ADD00EE72B2 /* parsingError.json */; };
+		B1D54A85215774F300EE72B2 /* UINavigationBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D54A84215774F300EE72B2 /* UINavigationBar+Appearance.swift */; };
+		B1D54A872157757300EE72B2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D54A862157757300EE72B2 /* UIColor+Extension.swift */; };
 		B1DEF0562150A03A0002EBD2 /* DeliveryDetailContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DEF0552150A03A0002EBD2 /* DeliveryDetailContract.swift */; };
 		B1DEF0582150AF680002EBD2 /* Delivery+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DEF0572150AF680002EBD2 /* Delivery+Extension.swift */; };
 		B1EE3634214D7BAA003068CD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE3633214D7BAA003068CD /* NetworkManager.swift */; };
@@ -52,7 +58,6 @@
 		B18234E0214CB8620056A72F /* Delivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18234E3214CB8620056A72F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B18234F4214CB8630056A72F /* DeliveryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeliveryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B18234F8214CB8630056A72F /* DeliveryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryTests.swift; sourceTree = "<group>"; };
 		B18234FA214CB8630056A72F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1823506214CB9040056A72F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1823508214CB9040056A72F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,6 +70,12 @@
 		B1823523214D14E80056A72F /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCell.swift; sourceTree = "<group>"; };
 		B1823525214D1EAE0056A72F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B1D54A752152923900EE72B2 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		B1D54A7A2156999600EE72B2 /* DeliveryTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeliveryTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		B1D54A7B2156999700EE72B2 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
+		B1D54A7E21569A1D00EE72B2 /* deliverySuccess.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = deliverySuccess.json; sourceTree = "<group>"; };
+		B1D54A8221573ADD00EE72B2 /* parsingError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = parsingError.json; sourceTree = "<group>"; };
+		B1D54A84215774F300EE72B2 /* UINavigationBar+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Appearance.swift"; sourceTree = "<group>"; };
+		B1D54A862157757300EE72B2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		B1DEF0552150A03A0002EBD2 /* DeliveryDetailContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailContract.swift; sourceTree = "<group>"; };
 		B1DEF0572150AF680002EBD2 /* Delivery+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delivery+Extension.swift"; sourceTree = "<group>"; };
 		B1EE3633214D7BAA003068CD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -143,11 +154,11 @@
 		B18234E2214CB8620056A72F /* Delivery */ = {
 			isa = PBXGroup;
 			children = (
+				B1823512214CB9040056A72F /* Extension */,
 				B1EE364821500F37003068CD /* DeliveryList */,
 				B1EE364921500FA5003068CD /* DeliveryDetail */,
 				B1EE364A2150121E003068CD /* Contract */,
 				B1EE3632214D7B4C003068CD /* Network */,
-				B1823512214CB9040056A72F /* Extension */,
 				B1823510214CB9040056A72F /* CoreData */,
 				B1823503214CB9040056A72F /* Model */,
 				B1823511214CB9040056A72F /* ViewController */,
@@ -161,8 +172,10 @@
 		B18234F7214CB8630056A72F /* DeliveryTests */ = {
 			isa = PBXGroup;
 			children = (
-				B18234F8214CB8630056A72F /* DeliveryTests.swift */,
+				B1D54A7D215699E900EE72B2 /* Data */,
 				B18234FA214CB8630056A72F /* Info.plist */,
+				B1D54A7B2156999700EE72B2 /* NetworkManagerTest.swift */,
+				B1D54A7A2156999600EE72B2 /* DeliveryTests-Bridging-Header.h */,
 			);
 			path = DeliveryTests;
 			sourceTree = "<group>";
@@ -234,6 +247,8 @@
 			children = (
 				B182351F214CF7580056A72F /* UIView+Layout.swift */,
 				B1D54A752152923900EE72B2 /* Reusable.swift */,
+				B1D54A84215774F300EE72B2 /* UINavigationBar+Appearance.swift */,
+				B1D54A862157757300EE72B2 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -244,6 +259,15 @@
 				B1823525214D1EAE0056A72F /* Constants.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		B1D54A7D215699E900EE72B2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B1D54A7E21569A1D00EE72B2 /* deliverySuccess.json */,
+				B1D54A8221573ADD00EE72B2 /* parsingError.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		B1EE3632214D7B4C003068CD /* Network */ = {
@@ -313,6 +337,7 @@
 				B18234F0214CB8630056A72F /* Sources */,
 				B18234F1214CB8630056A72F /* Frameworks */,
 				B18234F2214CB8630056A72F /* Resources */,
+				B4746EBEC74A6244FD82B13C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -339,6 +364,7 @@
 					};
 					B18234F3214CB8630056A72F = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = B18234DF214CB8620056A72F;
 					};
 				};
@@ -377,6 +403,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1D54A7F21569A1D00EE72B2 /* deliverySuccess.json in Resources */,
+				B1D54A8321573ADD00EE72B2 /* parsingError.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +427,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4746EBEC74A6244FD82B13C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DeliveryTests/Pods-DeliveryTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
+				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeliveryTests/Pods-DeliveryTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B9DCABBD6E084D5C48B8550C /* [CP] Check Pods Manifest.lock */ = {
@@ -446,6 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1D54A872157757300EE72B2 /* UIColor+Extension.swift in Sources */,
 				B1DEF0582150AF680002EBD2 /* Delivery+Extension.swift in Sources */,
 				B1EE364C21501262003068CD /* CollectionViewContract.swift in Sources */,
 				B1EE3634214D7BAA003068CD /* NetworkManager.swift in Sources */,
@@ -464,6 +513,7 @@
 				B1EE3642214F5B62003068CD /* MapViewCell.swift in Sources */,
 				B1D54A762152923900EE72B2 /* Reusable.swift in Sources */,
 				B1EE3636214E34D6003068CD /* CoreDataManager.swift in Sources */,
+				B1D54A85215774F300EE72B2 /* UINavigationBar+Appearance.swift in Sources */,
 				B1823520214CF7580056A72F /* UIView+Layout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,7 +522,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B18234F9214CB8630056A72F /* DeliveryTests.swift in Sources */,
+				B1D54A8121569D8700EE72B2 /* Model.swift in Sources */,
+				B1D54A8021569CB400EE72B2 /* NetworkManager.swift in Sources */,
+				B1D54A7C2156999700EE72B2 /* NetworkManagerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,6 +720,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DeliveryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -677,6 +730,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.learning.delivery.DeliveryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DeliveryTests/DeliveryTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Delivery.app/Delivery";
@@ -689,6 +744,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DeliveryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -698,6 +754,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.learning.delivery.DeliveryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DeliveryTests/DeliveryTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Delivery.app/Delivery";

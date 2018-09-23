@@ -15,6 +15,12 @@ class BaseCollectionViewController : BaseViewController {
     var collectionViewDelegate : CollectionViewDelegate?
     var displayRefreshControl = false
     
+    var isPaginationRequired = false
+    var fetchingMoreData = false
+    var offset = 0
+    var numberOfPages = 20 //Need to get from API
+    let numberOfItemsToFetch = 20
+    
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -23,6 +29,12 @@ class BaseCollectionViewController : BaseViewController {
         collectionView.delegate = self
         collectionView.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 16, right: 0)
         return collectionView
+    }()
+    
+    lazy var fetchedResultsController: NSFetchedResultsController<Delivery> = {
+        let fetchedResultsController = CoreDataManager.shared.fetchedResultsController
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
     }()
     
     lazy var blockOperations: [BlockOperation] = []
@@ -44,6 +56,7 @@ class BaseCollectionViewController : BaseViewController {
     func registerCell() { }
     func setupDataSource() { }
     func setupDelegate() { }
+    func fetchMoreData() { }
     
     deinit {
         blockOperations.forEach { $0.cancel() }
@@ -69,6 +82,21 @@ extension BaseCollectionViewController : UICollectionViewDataSource {
         }
         return dataSource.cellForItemAtIndexPath(indexPath: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        
+        guard isPaginationRequired,
+            let noOfDeliveries = self.fetchedResultsController.sections?.first?.numberOfObjects else {
+            return
+        }
+        
+        if !fetchingMoreData && (indexPath.row == noOfDeliveries - 10){
+            fetchingMoreData = true
+            fetchMoreData()
+        }
+    }
+   
 }
 
 // MARK: UICollectionViewDelegate

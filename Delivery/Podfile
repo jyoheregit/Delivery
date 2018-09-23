@@ -10,5 +10,6 @@ target 'Delivery' do
   target 'DeliveryTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Mockingjay'
   end
 end

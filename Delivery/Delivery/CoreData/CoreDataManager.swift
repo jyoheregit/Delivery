@@ -14,10 +14,6 @@ class CoreDataManager {
     
     static let shared = CoreDataManager()
     
-    init() {
-        setupNotifications()
-    }
-    
     func managedObjectContext() -> NSManagedObjectContext {
         return persistentContainer.viewContext
     }
@@ -33,7 +29,7 @@ class CoreDataManager {
         return persistentContainer
     }()
     
-    var fetchedResultsController: NSFetchedResultsController<Delivery> {
+    var fetchedResultsController: NSFetchedResultsController<Delivery>{
         
         let fetchRequest: NSFetchRequest<Delivery> = Delivery.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
@@ -45,35 +41,28 @@ class CoreDataManager {
         
         for deliveryModel in deliveryModelList {
             
-            guard let delivery = NSEntityDescription.insertNewObject(forEntityName: "Delivery", into: self.managedObjectContext()) as? Delivery else {
+            guard let delivery = NSEntityDescription.insertNewObject(forEntityName: "Delivery",
+                                                                     into: self.managedObjectContext()) as? Delivery else {
                 return
             }
-            delivery.id = deliveryModel.id!
+            if let id = deliveryModel.id { delivery.id = id }
             delivery.desc = deliveryModel.description
             delivery.imageUrl = deliveryModel.imageUrl
             
-            guard let deliveryLocation = NSEntityDescription.insertNewObject(forEntityName: "Location", into: self.managedObjectContext()) as? Location else {
+            guard let deliveryLocation = NSEntityDescription.insertNewObject(forEntityName: "Location",
+                                                                             into: self.managedObjectContext()) as? Location else {
                 return
             }
             
             if let locationModel = deliveryModel.location {
-                deliveryLocation.latitude = locationModel.latitude!
-                deliveryLocation.longitude = locationModel.longitude!
+                
+                if let latitude = locationModel.latitude {deliveryLocation.latitude = latitude}
+                if let longitude = locationModel.longitude {deliveryLocation.longitude = longitude}
+                
                 deliveryLocation.address = locationModel.address
                 delivery.location = deliveryLocation
             }
             saveContext()
-        }
-    }
-    
-    private func setupNotifications() {
-        let notificationCenter = NotificationCenter.default
-        
-        notificationCenter.addObserver(forName: UIApplication.willTerminateNotification, object: nil, queue: OperationQueue.main) { _ in
-            self.saveContext()
-        }
-        notificationCenter.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: OperationQueue.main) { _ in
-            self.saveContext()
         }
     }
     

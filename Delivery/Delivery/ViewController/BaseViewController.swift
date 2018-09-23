@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
+    
     lazy var loadingView : UIView = {
         let loadingView = UIView()
         loadingView.frame = self.view.frame
@@ -82,7 +82,7 @@ class BaseViewController: UIViewController {
         self.view.bringSubviewToFront(loadingView)
         activityIndicatorView.startAnimating()
     }
-    
+
     func hideActivityIndicator() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         loadingView.removeFromSuperview()
@@ -91,7 +91,7 @@ class BaseViewController: UIViewController {
     
     // MARK: Empty Message
     
-    func emptyMessageViewWith(message : String) -> UILabel {
+    func emptyMessageViewWith(message : String?) -> UILabel {
         emptyMessageView.text = message
         return emptyMessageView
     }

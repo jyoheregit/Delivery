@@ -12,28 +12,22 @@ import CoreData
 
 class DeliveryListViewController : BaseCollectionViewController {
     
-    var networkManager : NetworkManager?
+    var networkManager : Fetchable?
     var coordinator : DeliveryListCoordinator?
 
-    lazy var fetchedResultsController: NSFetchedResultsController<Delivery> = {
-        let fetchedResultsController = CoreDataManager.shared.fetchedResultsController
-        fetchedResultsController.delegate = self
-        return fetchedResultsController
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchDeliveries()
     }
     
     //MARK: Custom Overrides
-    
     override func registerCell() {
         collectionView.register(cell: DeliveryCell.self)
     }
     
     override func setupUI() {
         displayRefreshControl = true
+        isPaginationRequired = true
         super.setupUI()
     }
     
@@ -57,8 +51,37 @@ class DeliveryListViewController : BaseCollectionViewController {
     
     override func refresh() {
         super.refresh()
+        offset = 0
         fetchDeliveries()
     }
+
+    override func fetchMoreData() {
+        
+        offset += numberOfItemsToFetch
+        guard let networkManager = self.networkManager else { return }
+        
+        networkManager.fetchDeliveries(offset : offset, limit: numberOfItemsToFetch) { [weak self] (deliveries, error) in
+            
+            guard let deliveries = deliveries  else {
+                self?.resetOffset()
+                return
+            }
+            
+            if deliveries.count == 0 || error != nil {
+                self?.resetOffset()
+                return
+            }
+            
+            CoreDataManager.shared.insertInDB(deliveryModelList: deliveries)
+            self?.fetchingMoreData = false
+        }
+    }
+    
+    func resetOffset() {
+        self.fetchingMoreData = false
+        self.offset = self.offset > 0 ? self.offset - numberOfItemsToFetch : self.offset
+    }
+
 }
 
 //MARK: Fetch Logic
@@ -85,26 +108,36 @@ extension DeliveryListViewController {
         
         guard let networkManager = self.networkManager else { return }
         
-        networkManager.fetchDeliveries() { (deliveries, error) in
+        networkManager.fetchDeliveries(offset : offset, limit: numberOfItemsToFetch) {[weak self]  (deliveries, error) in
             
-            guard let deliveries = deliveries  else {
-                self.cleanup()
-                if (self.fetchedResultsController.fetchedObjects?.count == 0){
+            guard let deliveries = deliveries else {
+                if let isEmpty = self?.isDataEmpty(), isEmpty {
                     if let error = error {
-                        let messageView = self.emptyMessageViewWith(message: error.localizedDescription)
-                        self.collectionView.backgroundView = messageView
+                        self?.setErrorMessage(with: error)
                     }
                 }
+                self?.stopActivityIndicator()
                 return
             }
-            self.collectionView.backgroundView = nil
+            self?.collectionView.backgroundView = nil
             CoreDataManager.shared.clearData()
             CoreDataManager.shared.insertInDB(deliveryModelList: deliveries)
-            self.cleanup()
+            self?.stopActivityIndicator()
         }
     }
     
-    func cleanup() {
+    func isDataEmpty() -> Bool {
+        
+        guard let items = self.fetchedResultsController.fetchedObjects, items.count == 0 else { return false }
+        return true
+    }
+    
+    func setErrorMessage(with error : ErrorType){
+        let messageView = self.emptyMessageViewWith(message: error.associatedValue() as? String)
+        self.collectionView.backgroundView = messageView
+    }
+    
+    func stopActivityIndicator() {
         self.hideActivityIndicator()
         self.endRefreshing()
     }

@@ -9,32 +9,54 @@
 import Foundation
 import Alamofire
 
-class NetworkManager {
+protocol Fetchable {
     
-    let url = "https://mock-api-mobile.dev.lalamove.com/deliveries?offset=0&limit=20"
+    func fetchDeliveries(offset : Int, limit : Int, completion : @escaping ([DeliveryModel]?, ErrorType?) ->())
+}
+
+enum ErrorType : Error {
     
-    func fetchDeliveries(completion : @escaping ([DeliveryModel]?, Error?) ->()) {
-        
+    case noDataAvailable(String)
+    case parsingError(String)
+    case otherError(String)
+    
+    func associatedValue() -> Any {
+        switch self {
+        case .noDataAvailable(let value):
+            return value
+        case .parsingError(let value):
+            return value
+        case .otherError(let value):
+            return value
+        }
+    }
+}
+
+class NetworkManager : Fetchable {
+    
+    func fetchDeliveries(offset : Int, limit : Int, completion : @escaping ([DeliveryModel]?, ErrorType?) ->()) {
+    
+        let url = "https://mock-api-mobile.dev.lalamove.com/deliveries?offset=\(offset)&limit=\(limit)"
         Alamofire
             .request(url)
             .responseJSON { (response) in
-                
-                guard let data = response.data else {
-                    completion(nil, response.error)
+              
+                guard response.result.isSuccess, let data = response.data else {
+                    if let error = response.result.error {
+                        completion(nil, ErrorType.otherError(error.localizedDescription))
+                    }
                     return
                 }
-               
+            
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
                     let decoder = JSONDecoder()
                     let deliveries = try decoder.decode([DeliveryModel].self, from: data)
-                    completion(deliveries, response.error)
+                    deliveries.count > 0 ? completion(deliveries, nil) :
+                                           completion(deliveries, ErrorType.noDataAvailable("No Data Available"))
                 }
                 catch {
-                    completion(nil, response.error)
+                    completion(nil, ErrorType.parsingError("Error Parsing Deliveries"))
                 }
         }
     }
-    
 }

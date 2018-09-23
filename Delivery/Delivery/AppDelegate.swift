@@ -19,8 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewController = DeliveryListCoordinator().navigationViewController()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = viewController
+        UINavigationBar.setAppearance()
         window?.makeKeyAndVisible()
         return true
     }
+    
 }
 
